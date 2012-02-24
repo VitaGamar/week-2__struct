@@ -1,12 +1,15 @@
 // 13_MedStud.cpp : Defines the entry point for the console application.
-//
+//З клавіатури ввести послідовність записів, які містять дані медичного обстеження студенів: 
+//<Прізвище, ініціали>, <Вік>, <Стать>, <Зріст>, <Вага>. Роздрукувати введені дані у вигляді таблиці, 
+//відсортувавши їх за прізвищами студенів в абетковому порядку. Визначити середній зріст і вагу 
+//студентів жіночої і чоловічої статі.
 #include"stdafx.h"
 #include <stdio.h>
 #include<stdlib.h>
 #include <string.h>
 #include<iomanip>
 #include<iostream>
-#include<ios>
+
 using namespace std;
 
 struct MedStud 

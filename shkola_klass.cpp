@@ -1,12 +1,10 @@
 // shkola_klass.cpp : Defines the entry point for the console application.
 //
-//16.	З клавіатури ввести послідовність даних про школярів
-//– учасників спортивних змагань: <Прізвище>, <Ім’я>, <Школа>, <Клас>. 
-//Роздрукувати введені дані у вигляді таблиці, згрупувавши їх за номерами шкіл 
-//у зростаючому порядку, а в межах школи – за класами. Визначити школу, з якої 
-//в змаганнях приймає участь найбільше дев’ятикласників.
-// 13_MedStud.cpp : Defines the entry point for the console application.
-//
+//	Р— РєР»Р°РІС–Р°С‚СѓСЂРё РІРІРµСЃС‚Рё РїРѕСЃР»С–РґРѕРІРЅС–СЃС‚СЊ РґР°РЅРёС… РїСЂРѕ С€РєРѕР»СЏСЂС–РІ вЂ“ СѓС‡Р°СЃРЅРёРєС–РІ СЃРїРѕСЂС‚РёРІРЅРёС… Р·РјР°РіР°РЅСЊ: 
+//<РџСЂС–Р·РІРёС‰Рµ>, <Р†РјвЂ™СЏ>, <РЁРєРѕР»Р°>, <РљР»Р°СЃ>. Р РѕР·РґСЂСѓРєСѓРІР°С‚Рё РІРІРµРґРµРЅС– РґР°РЅС– Сѓ РІРёРіР»СЏРґС– С‚Р°Р±Р»РёС†С–, Р·РіСЂСѓРїСѓРІР°РІС€Рё С—С… 
+//Р·Р° РЅРѕРјРµСЂР°РјРё С€РєС–Р» Сѓ Р·СЂРѕСЃС‚Р°СЋС‡РѕРјСѓ РїРѕСЂСЏРґРєСѓ, Р° РІ РјРµР¶Р°С… С€РєРѕР»Рё вЂ“ Р·Р° РєР»Р°СЃР°РјРё. Р’РёР·РЅР°С‡РёС‚Рё С€РєРѕР»Сѓ, Р· СЏРєРѕС— 
+//РІ Р·РјР°РіР°РЅРЅСЏС… РїСЂРёР№РјР°С” СѓС‡Р°СЃС‚СЊ РЅР°Р№Р±С–Р»СЊС€Рµ РґРµРІвЂ™СЏС‚РёРєР»Р°СЃРЅРёРєС–РІ.
+
 #include"stdafx.h"
 #include <string.h>
 #include<iomanip>
@@ -14,26 +12,25 @@
 #include<ios>
 using namespace std;
 
-struct Sport_comp 
+struct Sport_comp 		// СѓС‡Р°СЃРЅРёРєРё СЃРїРѕСЂС‚РёРІРЅРёС… Р·РјР°РіР°РЅСЊ
 {
-char surname[10];
-char name[10];
-unsigned numb_of_school;
-char klas[5];
+char surname[10];		//РїСЂС–Р·РёС‰Рµ
+char name[10];			// С–Рј"СЏ
+unsigned numb_of_school;	//РЅРѕРјРµСЂ С€РєРѕР»Рё
+char klas[5];			// С‚Р° РєР»Р°СЃ
 };
-void sort_school(Sport_comp *p, int n);
+void sort_school(Sport_comp *p, int n);		// СЃРѕСЂС‚СѓС”РјРѕ Р·Р° РЅРѕРјРµСЂР°РјРё С€РєС–Р» С‚Р° РєР»Р°СЃР°РјРё Сѓ Р·СЂРѕСЃС‚Р°СЋС‡РѕРјСѓ РїРѕСЂСЏРґРєСѓ
 int main()
 { 
 int i, n, max=0, h, num=0, maxnum=0;
 cout<<"Enter number of competitor: "; cin>>n; 
-Sport_comp *x=new Sport_comp[n];		// динамчно створюємо масив типу Sport_comp
+Sport_comp *x=new Sport_comp[n];		// РґРёРЅР°РјС‡РЅРѕ СЃС‚РІРѕСЂСЋС”РјРѕ РјР°СЃРёРІ С‚РёРїСѓ Sport_comp
 printf("Enter an information about competitor \n");
 cout<<"Enter surname and name, number of school and class : \n";
 for(i=0;i<n;i++)
 { 
 	cout<<i+1<<". ";
-	cin>>x[i].surname>>x[i].name>>x[i].numb_of_school>>x[i].klas; //заносимо дані в масив
-}
+	cin>>x[i].surname>>x[i].name>>x[i].numb_of_school>>x[i].klas; //Р·Р°РЅРѕСЃРёРјРѕ РґР°РЅС– РІ РјР°СЃРёРІ
 sort_school(x, n);
 cout.setf(ios::left);
 cout<<setw(10)<<"\n\  Surname    Name    School     Class"<<endl;
@@ -45,20 +42,20 @@ while(i<n-1)
 	h=0;
 	while(x[i].numb_of_school==x[i+1].numb_of_school) 
 	{
-		if (x[i].klas[0]=='9')   {h++; num=i;} // якщо це 9 клас - збільшуємо лічильник і запам;ятовуємо індекс
+		if (x[i].klas[0]=='9')   {h++; num=i;} // СЏРєС‰Рѕ С†Рµ 9 РєР»Р°СЃ - Р·Р±С–Р»СЊС€СѓС”РјРѕ Р»С–С‡РёР»СЊРЅРёРє С– Р·Р°РїР°Рј;СЏС‚РѕРІСѓС”РјРѕ С–РЅРґРµРєСЃ
 		i++;
 	}
-	if(x[i].klas[0]=='9')   {h++; num=i;} // номер школи не дорівнює наступному, але це 9 клас
+	if(x[i].klas[0]=='9')   {h++; num=i;} // РЅРѕРјРµСЂ С€РєРѕР»Рё РЅРµ РґРѕСЂС–РІРЅСЋС” РЅР°СЃС‚СѓРїРЅРѕРјСѓ, Р°Р»Рµ С†Рµ 9 РєР»Р°СЃ
 	i++;
-	if(h>max) { max=h; maxnum=num;}
+	if(h>max) { max=h; maxnum=num;}	// Р·Р°РїР°Рј"СЏС‚РѕРІСѓС”РјРѕ РґРµ РЅР°Р№Р±С–Р»СЊС€Рµ 9С‚РёРєР»Р°СЃРЅРёРєС–РІ
 }
 cout<<"maximum 9 ("<<max<<") in school number "<<x[maxnum].numb_of_school;
-delete[]x;
+delete[]x;		//Р·РІС–Р»СЊРЅРµРЅРЅСЏ Р”Рџ
 system("pause");
 return 0;
 }
 
-void sort_school(Sport_comp *p, int n)
+void sort_school(Sport_comp *p, int n)	//СЃРѕСЂС‚СѓС”РјРѕ РјРµС‚РѕРґРѕРј Р±СѓР»СЊР±Р°С€РєРё
 {
 char str1[10],str2[10],s1[5],s2[5];
 Sport_comp y;
@@ -67,8 +64,8 @@ for(int i=n-1;i>0;i--)
 	{
 		itoa((p+j)->numb_of_school,str1,10);
 		itoa((p+j+1)->numb_of_school,str2,10);
-		strcpy(s1,(p+j)->klas);
-		strcpy(s2,(p+j+1)->klas);
+		strcpy(s1,(p+j)->klas);		//РЅРѕРјРµСЂ С€РєРѕР»Рё С‚Р° РєР»Р°СЃ Р·Р°РЅРѕСЃРёРјРѕ РІ СЂСЏРґРѕРє
+		strcpy(s2,(p+j+1)->klas);	//С‰РѕР± РјРѕР¶РЅР° Р±СѓР»Рѕ СЃРѕСЂС‚СѓРІР°С‚Рё Р·Р° С€РєРѕР»РѕСЋ С‚Р° РєР»Р°СЃРѕРј РІ РјРµР¶Р°С… РѕРґРЅС–С”С— С€РєРѕР»Рё
 		if(strcmp(strcat(str1,s1),strcat(str2,s2))>0)
 		{ 
 			y=*(p+j);
